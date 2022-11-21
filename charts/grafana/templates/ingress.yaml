@@ -38,7 +38,7 @@ spec:
       http:
         paths:
           {{- with $extraPaths }}
-          {{- toYaml . | indent 10 }}
+          {{- toYaml . | nindent 10 }}
           {{- end }}
           - path: {{ $ingressPath }}
             {{- if $ingressSupportsPathType }}
@@ -71,8 +71,8 @@ spec:
             {{- with $ingressPath }}
             path: {{ . }}
             {{- end }}
-            {{- with $ingressSupportsPathType }}
-            pathType: {{ . }}
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $ingressPathType }}
             {{- end }}
   {{- end -}}
 {{- end }}
